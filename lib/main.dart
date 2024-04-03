@@ -35,56 +35,78 @@ class _MyHomePageState extends State<MyHomePage> {
     'asset/images/2.jpeg',
     'asset/images/3.jpeg',
     'asset/images/4.jpeg',
+    'asset/images/5.jpeg',
+    'asset/images/6.jpeg',
+    'asset/images/7.jpeg',
+    'asset/images/8.jpeg',
+    'asset/images/9.jpeg',
+    'asset/images/10.jpeg',
+    'asset/images/11.jpeg',
   ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xffB784B7),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 200),
-        child: SizedBox(
-          height: 350,
-          child: ListView.builder(
-            itemCount: _assetImages.length,
-            shrinkWrap: true,
-            scrollDirection: Axis.horizontal,
-            itemBuilder: (context, index) {
-              return GestureDetector(
-                onTap: () {
-                  setState(() {
-                    _clickedIndex = index;
-                  });
-                },
-                child: AnimatedContainer(
-                  duration: const Duration(milliseconds: 600),
-                  curve: Curves.easeInOut,
-                  width: _clickedIndex == index ? 500.0 : 80.0,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(50.0),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.black.withOpacity(0.2),
-                          blurRadius: 5.0,
-                          spreadRadius: 2.0,
+      body: Container(
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(
+            colors: [
+              Color(0xffFFCDEA),
+              Color(0xff836FFF),
+            ],
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            stops: [0.0, 1.0],
+            tileMode: TileMode.clamp,
+            // Color(0xff7469B6),
+            // Color(0xffB784B7),
+          ),
+        ),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 60, vertical: 220),
+          child: SizedBox(
+            height: 500,
+            child: ListView.builder(
+              itemCount: _assetImages.length,
+              shrinkWrap: true,
+              scrollDirection: Axis.horizontal,
+              itemBuilder: (context, index) {
+                return GestureDetector(
+                  onTap: () {
+                    setState(() {
+                      _clickedIndex = index;
+                    });
+                  },
+                  child: AnimatedContainer(
+                    duration: const Duration(milliseconds: 600),
+                    curve: Curves.linear,
+                    width: _clickedIndex == index ? 500.0 : 70.0,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(30.0),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.black.withOpacity(0.2),
+                            blurRadius: 6.0,
+                            spreadRadius: 2.0,
+                          ),
+                        ]),
+                    margin: const EdgeInsets.all(10.0),
+                    child: Stack(
+                      fit: StackFit.expand,
+                      children: [
+                        ClipRRect(
+                          borderRadius: BorderRadius.circular(25.0),
+                          child: Image.asset(
+                            _assetImages[index],
+                            fit: BoxFit.cover,
+                          ),
                         ),
-                      ]),
-                  margin: const EdgeInsets.all(8.0),
-                  child: Stack(
-                    fit: StackFit.expand,
-                    children: [
-                      ClipRRect(
-                        borderRadius: BorderRadius.circular(25.0),
-                        child: Image.asset(
-                          _assetImages[index],
-                          fit: BoxFit.cover,
-                        ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
-                ),
-              );
-            },
+                );
+              },
+            ),
           ),
         ),
       ),
